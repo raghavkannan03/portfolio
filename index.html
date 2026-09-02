@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="description" content="Raghav Kannan: Mechanical Engineering student at Purdue. Robotics hardware, CAD/GD&T, sheet metal fabrication, and vision-assisted inspection.">
+<meta name="color-scheme" content="dark">
+<title>Raghav Kannan · Engineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Hero: engineering-drawing title block -->
+  <header class="titleblock" aria-label="Introduction">
+    <div class="tb-grid">
+      <div class="tb-cell tb-name">
+        <h1>Raghav Kannan</h1>
+        <p class="role">Experience: Robotics hardware, Drone Development, CAD &amp; GD&amp;T, Sheet Metal Fabrication, and vision-assisted inspection.</p>
+        <p class="role role-gap">Current Roles: Project Manager at Purdue ARC drone delivery, Undergraduate Research (Computer Vision [CV] for Nondestructive Testing), and Sheet Metal Fabrication.</p>
+        <div class="tags">
+          <span class="tag">Fusion 360</span><span class="tag">NX</span><span class="tag">GD&amp;T</span>
+          <span class="tag">Sheet Metal</span><span class="tag">ROS 2 Humble</span><span class="tag">Python / C++</span><span class="tag">DFM</span>
+        </div>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label">Program</span>
+        <span class="tb-value">B.S. Mechanical Engineering, Purdue University</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label">Grad. Date</span>
+        <span class="tb-value accent">April 2028</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label">Current assignment</span>
+        <span class="tb-value">AIAS (Automated Inspection Assistance System) · ARC drone delivery</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label">Sheet</span>
+        <span class="tb-value">1 of 1</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Relevant Coursework -->
+  <section aria-labelledby="cw-h">
+    <h2 class="eyebrow" id="cw-h">Relevant Coursework</h2>
+    <div class="skills skills-lg">
+      <div>
+        <h4>Current Courses</h4>
+        ME 365 Controls, Systems, &amp; Measurements I · ME 308 Fluid Mechanics · ME 323 Mechanics of Materials · ME 32301 Mechanics of Materials Lab · ME 498 Mechanical Engineering Research
+      </div>
+      <div>
+        <h4>Completed Courses</h4>
+        ME 274 Dynamics · ECE 2k1 Linear Circuits · ECE 2k7 Linear Circuits Lab · MA 303 Partial Differential Equations · ME 264 Sophomore Mechanical Design · ME 270 Statics · ME 200 Thermodynamics
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section aria-labelledby="sk-h">
+    <h2 class="eyebrow" id="sk-h">Skills</h2>
+    <div class="skills skills-lg">
+      <div>
+        <h4>CAD &amp; design</h4>
+        Siemens NX · Fusion 360 · Onshape · GD&amp;T · tolerance stackup · design for manufacturability (DFM) · engineering drawings
+      </div>
+      <div>
+        <h4>Sheet metal fabrication</h4>
+        Manual brake bending (bend radii, bend order, hemming) · spot welding · riveting · punching (relief cuts, punch shape selection) · foot &amp; handheld shears (chamfering, filleting) · roller · pneumatic press
+      </div>
+      <div>
+        <h4>Manufacturing &amp; prototyping</h4>
+        3D printing (FDM, Bambu Lab, Prusa XL &amp; MK4, Creality) · rapid prototyping · fixture design · shop safety instruction
+      </div>
+      <div>
+        <h4>Software &amp; programming</h4>
+        Ubuntu Linux · Python · OpenCV · C · C++ · MATLAB · Git · Docker · Azure (RAG applications) · Rust · SDL2 · JS · React.js · pandas · numpy · matplotlib · Selenium · PyVisa
+      </div>
+      <div>
+        <h4>Robotics &amp; simulation</h4>
+        ROS 2 (Humble) · PX4 · Gazebo (Classic &amp; Harmonic) · uXRCE-DDS · BehaviorTree.CPP · Nav2 · FAST-LIO2 · AprilTag detection · LiDAR integration · inverse kinematics (6-DOF)
+      </div>
+      <div>
+        <h4>Test, inspection &amp; instrumentation</h4>
+        Oscilloscope + frequency response analysis · SCPI instrument automation · LTspice · magnetic particle inspection (NDT) · stereo vision · deep learning for visual inspection
+      </div>
+      <div>
+        <h4>Honors</h4>
+        Pfaff ME Scholarship
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected work -->
+  <section aria-labelledby="work">
+    <h2 class="eyebrow" id="work">Selected work</h2>
+    <div class="cards">
+      <a class="card" href="projects/drone-delivery.html">
+        <h3>Drone Delivery</h3>
+        <p>Purdue ARC drone delivery program: mechanical, electrical, navigation, and landing subteams delivering packages via a Tarot T960 hexacopter.</p>
+        <span class="metric">See more →</span>
+      </a>
+      <a class="card" href="projects/autonomy-stack.html">
+        <h3>Drone Autonomy &amp; Sim Stack</h3>
+        <p>ROS 2 / PX4 stack: FAST-LIO2 localization, behavior-tree missions, AprilTag precision landing, Gazebo Harmonic migration (using Docker and ROS2 Humble).</p>
+        <span class="metric">See more →</span>
+      </a>
+      <a class="card" href="projects/payload-winch.html">
+        <h3>Drone Payload Winch</h3>
+        <p>Passive delivery mechanism for Tarot T960 hexacopter.</p>
+        <span class="metric">See more →</span>
+      </a>
+      <a class="card" href="projects/sheet-metal.html">
+        <h3>Sheet Metal Fabrication</h3>
+        <p>Design and fabrication of sheet metal components for general machine shop projects in the ME manufacturing spaces, and DFM for ME 264 assignments.</p>
+        <span class="metric">See more →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section aria-labelledby="xp-h">
+    <h2 class="eyebrow" id="xp-h">Experience</h2>
+    <div class="xp">
+      <div class="xp-row">
+        <div>
+          <b>Purdue University · Research with Professor Shirley Dyke</b> · Undergraduate Researcher
+          <div class="desc">Automated Inspection Assistance System (AIAS): deep learning + stereo vision assisting human inspectors in magnetic particle inspection of steel castings.</div>
+        </div>
+        <span class="when">AUG 2026 –</span>
+      </div>
+      <div class="xp-row">
+        <div>
+          <b>Purdue Autonomous Robotics Club</b> · Project Manager &amp; Hardware Lead
+          <div class="desc">Lead the drone delivery project across navigation, landing, and electronics/mechanical subteams; own payload mechanism and hardware architecture.</div>
+        </div>
+        <span class="when">2025 –</span>
+      </div>
+      <div class="xp-row">
+        <div>
+          <b>Purdue School of Mechanical Engineering</b> · Undergraduate TA, ME 264
+          <div class="desc">Help run the sheet metal fabrication studio in the ME machine shop (brakes, riveting, spot welding) for sophomore design students.</div>
+        </div>
+        <span class="when">OCT 2025 –</span>
+      </div>
+      <div class="xp-row">
+        <div>
+          <b>Leggera Technologies</b> · AI Software Engineering Intern
+          <div class="desc">Built and shipped an Azure-based RAG troubleshooting application for a thixomolding factory floor.</div>
+        </div>
+        <span class="when">SUM 2025</span>
+      </div>
+      <div class="xp-row">
+        <div>
+          <b>Earlier</b>
+          <div class="desc">aThingz (2021) · NASA TSGC SEES (2020)</div>
+        </div>
+        <span class="when">2020–21</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section aria-labelledby="ct-h">
+    <h2 class="eyebrow" id="ct-h">Contact</h2>
+    <ul class="contact-list">
+      <li><a href="mailto:kannan25@purdue.edu" rel="noopener noreferrer"><span class="placeholder">kannan25@purdue.edu</span></a><span class="note">Purdue Email</span></li>
+      <li><a href="https://www.linkedin.com/in/raghavkannan" rel="noopener noreferrer">linkedin.com/in/raghavkannan</a><span class="note">public profile</span></li>
+      <li><span>Resume available on request</span><span class="note">by email</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>RAGHAV KANNAN · PORTFOLIO</span>
+    <span>NO SCRIPTS  ·  NO TRACKING</span>
+  </footer>
+
+</div>
+</body>
+</html>

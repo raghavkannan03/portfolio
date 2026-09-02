@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="description" content="More details: passive drone payload winch: centrifugal brake, tension-loss release, constant-force rewind.">
+<meta name="color-scheme" content="dark">
+<title>Drone Payload Winch · Raghav Kannan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="../index.html">← Main Page</a>
+
+  <header class="proj-head">
+    <div class="proj-head-inner">
+      <h1>Drone Payload Winch</h1>
+    </div>
+    <div class="proj-meta">
+      <div><span class="tb-label">Role</span><span class="tb-value">Mechanism designer · Hardware Lead</span></div>
+      <div><span class="tb-label">Team</span><span class="tb-value">Purdue ARC drone delivery</span></div>
+      <div><span class="tb-label">Status</span><span class="tb-value accent">Redesign Phase</span></div>
+      <div><span class="tb-label">Tools</span><span class="tb-value">Fusion 360 · Onshape · 3D printing</span></div>
+    </div>
+  </header>
+
+  <article>
+    <figure class="figure-slot figure-photo">
+      <img src="../photos_docs/Winch.png" alt="Drone payload winch mechanism">
+      <figcaption>The passive payload winch mechanism: The mounting plate fits to the T960 hexacopter frame.</figcaption>
+    </figure>
+
+    <h2>Problem</h2>
+    <p>Autonomous package delivery from a Tarot T960 hexacopter requires lowering a payload to the ground and releasing it without landing, and without powered, actively-controlled descent hardware adding mass and failure modes.</p>
+
+    <h2>Constraints</h2>
+    <ul>
+      <li>Passive operation: no motor-driven descent control</li>
+      <li>Automatic release on ground contact (tension loss), no RC input</li>
+      <li>Mass and envelope limits for the T960 airframe: <span class="mono">max payload weight 3.5 kg</span></li>
+      <li>Automatic rewind for repeated deliveries</li>
+    </ul>
+
+    <h2>My role</h2>
+    <p>I own the mechanism end-to-end: architecture, CAD, part design, and physical prototyping. The design is a 13-part assembly built around three subsystems:</p>
+    <ol>
+      <li><strong>Centrifugal brake</strong>: governs descent speed passively</li>
+      <li><strong>Tension-loss release hook</strong>: releases the payload when line tension drops at touchdown</li>
+      <li><strong>Constant-force rewind spring</strong>: retracts the line after release</li>
+    </ol>
+
+    <h2>Approach &amp; key decisions</h2>
+    <ul>
+      <li>Chose a passive centrifugal brake over a motor + encoder: fewer failure modes, no flight-controller integration, lower mass. Trade-off: descent rate is fixed by brake tuning rather than commanded.</li>
+      <li>Deferred final brake architecture to physical testing rather than simulation; friction behavior at this scale is cheaper to measure than to model.</li>
+      <li>Weighed the original hook design against a carabiner-type hook: the carabiner improves tolerance for misaligning the drone to the box handle. The original hook-shaped end effector makes the passive latch/unlatch mechanism easier to visualize, but further brainstorming suggests it may be impractical.</li>
+      <li>New design swaps the coil spring + slider latch mechanism for a rectangular spring latch.</li>
+    </ul>
+    <div class="figure-pair">
+      <figure class="figure-pair-item">
+        <img src="../photos_docs/hook1_front.png" alt="Hook design, front view">
+        <figcaption>Hook design, front view.</figcaption>
+      </figure>
+      <figure class="figure-pair-item">
+        <img src="../photos_docs/hook1_back.png" alt="Hook design, back view">
+        <figcaption>Hook design, back view.</figcaption>
+      </figure>
+    </div>
+
+    <h2>Results</h2>
+    <p>The centrifugal brake and its related components turned out to be too complicated to build and tune reliably. Therefore we are now considering a motor to control descent instead.</p>
+    <p>We also pivoted to a gravity grappling hook design from the original spring loaded or button release design: it grabs onto the package passively, closes under tension from the winch line, re-opens when that tension is lost at touchdown, and stays closed at rest otherwise.</p>
+
+    <figure class="figure-slot figure-photo">
+      <img src="../photos_docs/gravity_hook_prototype.png" alt="Gravity grappling hook prototype">
+      <figcaption>Gravity grappling hook prototype.</figcaption>
+    </figure>
+  </article>
+
+  <footer>
+    <span>MORE DETAILS · DRONE PAYLOAD WINCH</span>
+    <span><a href="../index.html">RAGHAV KANNAN</a></span>
+  </footer>
+</div>
+</body>
+</html>

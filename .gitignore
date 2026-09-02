@@ -1,0 +1,20 @@
+# Drafts: pages still containing [FILL: ...] placeholders.
+# Remove the corresponding line here once a page is finished.
+projects/holonomic-drive-robot.html
+projects/rag-app.html
+experience/earlier.html
+
+# Local archive, not part of the deployed site
+gh-pages-portfolio-v3.zip
+
+# Never commit secrets
+.env
+*.key
+*.pem
+
+# Private deploy notes and security checklist, not site content
+README.md
+
+# Unreferenced / third-party images, kept on disk but not published
+flight control.png
+Avada+Latch+and+Release+Diagram.jpeg

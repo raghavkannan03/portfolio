@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="description" content="More details: Purdue ARC drone delivery program, project management and hardware architecture.">
+<meta name="color-scheme" content="dark">
+<title>Drone Delivery · Raghav Kannan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="../index.html">← Main Page</a>
+
+  <header class="proj-head">
+    <div class="proj-head-inner">
+      <h1>Drone Delivery</h1>
+    </div>
+    <div class="proj-meta">
+      <div><span class="tb-label">Role</span><span class="tb-value">Project Manager · Hardware Lead</span></div>
+      <div><span class="tb-label">Team</span><span class="tb-value">Purdue Autonomous Robotics Club</span></div>
+      <div><span class="tb-label">Status</span><span class="tb-value accent">Active</span></div>
+      <div><span class="tb-label">Tools</span><span class="tb-value">Tarot T960 · ROS 2 · PX4 · Fusion 360</span></div>
+    </div>
+  </header>
+
+  <article>
+    <figure class="figure-slot figure-photo">
+      <img src="../photos_docs/drone.jpg" alt="Tarot T960 hexacopter used for the ARC drone delivery program">
+      <figcaption>The Tarot T960 hexacopter used for the ARC drone delivery program.</figcaption>
+    </figure>
+
+    <h2>Problem</h2>
+    <p>I'm the project manager of a team of engineering students building a campus-wide autonomous drone delivery system, using Tarot T960 frame hexacopters to reduce congestion on university campus walkways and roads. As part of this effort I designed and fabricated a programmable depth-camera gimbal built around an open-source board, along with a passive drone payload-delivery winch.</p>
+
+    <figure class="figure-slot figure-photo">
+      <img src="../photos_docs/gimbal.png" alt="Programmable depth-camera gimbal designed for the ARC drone delivery program">
+      <figcaption>Programmable depth-camera gimbal (I designed v1) and fabricated around an open-source board.</figcaption>
+    </figure>
+
+    <h2>Constraints</h2>
+    <ul>
+      <li>Autonomous flight over populated campus walkways and roads: demands redundant safety behaviors and fail-safes, not just point-to-point autopilot</li>
+      <li>Passive, motor-free payload release and descent: no additional actuators or flight-controller integration on the delivery mechanism itself</li>
+      <li>Precision landing and delivery-zone tolerance near pedestrians and structures</li>
+      <li>Payload capacity: the drone is meant to carry 3.5 kg</li>
+      <li>Airspace and campus operating restrictions: aiming to fly at 300 ft once the project is deployed. Campus has no-fly zones scattered throughout that routes must avoid, which requires coordinating with campus safety/FAA contacts to map and clear</li>
+      <li>Landing and charging infrastructure: no en-route landing for delivery, packages are lowered via the passive winch instead. We're designing an auto-charging station as the only landing/parking spot, where drones dock and recharge between deliveries</li>
+    </ul>
+
+    <h2>My role</h2>
+    <p>I lead the drone delivery project across navigation, landing, and electronics/mechanical subteams, and own the payload mechanism and hardware architecture.</p>
+
+    <h2>Approach &amp; key decisions</h2>
+    <ul>
+      <li>The drone currently flies autonomously over a field via waypoints programmed on the QGroundControl map</li>
+      <li>FAST-LIO2 localization is working correctly: in simulation, we get clean LiDAR returns on trees, obstacles, and the terrain below</li>
+      <li>Landing sequence, all validated in simulation: the drone flies to the landing point, then detects an AprilTag on the ground to land precisely on the charging station</li>
+    </ul>
+    <figure class="figure-slot figure-photo">
+      <img src="../photos_docs/navigation_stack.png" alt="Navigation stack architecture diagram">
+      <figcaption>Navigation stack architecture.</figcaption>
+    </figure>
+
+  </article>
+
+  <footer>
+    <span>MORE DETAILS · DRONE DELIVERY</span>
+    <span><a href="../index.html">RAGHAV KANNAN</a></span>
+  </footer>
+</div>
+</body>
+</html>
