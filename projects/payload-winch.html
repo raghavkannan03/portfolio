@@ -23,7 +23,7 @@
     <div class="proj-meta">
       <div><span class="tb-label">Role</span><span class="tb-value">Mechanism designer · Hardware Lead</span></div>
       <div><span class="tb-label">Team</span><span class="tb-value">Purdue ARC drone delivery</span></div>
-      <div><span class="tb-label">Status</span><span class="tb-value accent">Redesign Phase</span></div>
+      <div><span class="tb-label">Status</span><span class="tb-value accent">Integrated · Bench Test Pending</span></div>
       <div><span class="tb-label">Tools</span><span class="tb-value">Fusion 360 · Onshape · 3D printing</span></div>
     </div>
   </header>
@@ -74,11 +74,15 @@
     <h2>Results</h2>
     <p>The centrifugal brake and its related components turned out to be too complicated to build and tune reliably. Therefore we are now considering a motor to control descent instead.</p>
     <p>We also pivoted to a gravity grappling hook design from the original spring loaded or button release design: it grabs onto the package passively, closes under tension from the winch line, re-opens when that tension is lost at touchdown, and stays closed at rest otherwise.</p>
+    <p>The winch is now wired into the flight software, driven directly off two of the flight controller's own outputs rather than a separate motor controller board, so lower, release, and reel-in are all commanded from the same state machine that flies the mission. Reading through that code before trusting it with a real cable, I found a bug where the mission could mark a delivery complete a twentieth of a second after commanding the drop, because it was reading the winch's last reported status instead of tracking its own commands. Fixed, and the full lower-release-retract sequence flew correctly for the first time in simulation this week.</p>
 
     <figure class="figure-slot figure-photo">
       <img src="../photos_docs/gravity_hook_prototype.png" alt="Gravity grappling hook prototype">
       <figcaption>Gravity grappling hook prototype.</figcaption>
     </figure>
+
+    <h2>Next</h2>
+    <p>The mechanism has never lifted a real load. Bench-testing it with a representative payload and measuring the actual lower and reel-in timings, instead of estimating them, is next.</p>
   </article>
 
   <footer>

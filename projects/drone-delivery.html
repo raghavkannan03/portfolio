@@ -23,8 +23,8 @@
     <div class="proj-meta">
       <div><span class="tb-label">Role</span><span class="tb-value">Project Manager · Hardware Lead</span></div>
       <div><span class="tb-label">Team</span><span class="tb-value">Purdue Autonomous Robotics Club</span></div>
-      <div><span class="tb-label">Status</span><span class="tb-value accent">Active</span></div>
-      <div><span class="tb-label">Tools</span><span class="tb-value">Tarot T960 · ROS 2 · PX4 · Fusion 360</span></div>
+      <div><span class="tb-label">Status</span><span class="tb-value accent">SITL Flight-Tested</span></div>
+      <div><span class="tb-label">Tools</span><span class="tb-value">Tarot T960 · ROS 2 · PX4 · Nav2 · Fusion 360</span></div>
     </div>
   </header>
 
@@ -57,10 +57,17 @@
 
     <h2>Approach &amp; key decisions</h2>
     <ul>
-      <li>The drone currently flies autonomously over a field via waypoints programmed on the QGroundControl map</li>
-      <li>FAST-LIO2 localization is working correctly: in simulation, we get clean LiDAR returns on trees, obstacles, and the terrain below</li>
-      <li>Landing sequence, all validated in simulation: the drone flies to the landing point, then detects an AprilTag on the ground to land precisely on the charging station</li>
+      <li>Nav2 plans the route against a live obstacle map; a mission state machine I wrote in C++ does the actual flying, so there's one authority commanding the aircraft instead of two systems that could both try to fly it at once</li>
+      <li>Every leg of the mission gets its route re-checked against the obstacle map in real time, not just the long ones</li>
+      <li>Landing uses AprilTag detection to find the pad, then hands off to PX4's own landing mode for the final meter instead of the mission software cutting power itself</li>
     </ul>
+
+    <h2>Results</h2>
+    <p>The first full delivery mission flew end to end in simulation this month: takeoff, a 596 m transit around real Purdue building footprints, winch drop, return, tag search, and a precision landing, with no failsafe triggered. Getting there took six attempts and real debugging along the way, including a mid-flight instability I traced to the flight controller's own raw log (full story on <a href="autonomy-stack.html">Autonomy &amp; Sim Stack</a>) and a winch-state bug that surfaced during a full read of the flight code before I trusted it with a real cable (see <a href="payload-winch.html">Drone Payload Winch</a>).</p>
+
+    <h2>What I'd change</h2>
+    <p>I'd have moved the simulated LiDAR to its real mounting position, under the airframe, much earlier. It sat in a convenient top-mounted spot for months, and moving it to match the real hardware late tripled the number of returns it produced and surfaced four bugs that had been hiding behind the wrong sensor geometry the whole time. Simulate the actual hardware position from day one, not a placeholder.</p>
+
     <figure class="figure-slot figure-photo">
       <img src="../photos_docs/navigation_stack.png" alt="Navigation stack architecture diagram">
       <figcaption>Navigation stack architecture.</figcaption>

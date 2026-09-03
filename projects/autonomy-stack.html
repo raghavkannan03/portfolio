@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'">
-<meta name="description" content="More details: ROS 2 / PX4 drone autonomy and simulation stack: FAST-LIO2, behavior trees, AprilTag precision landing.">
+<meta name="description" content="More details: ROS 2 / PX4 drone autonomy and simulation stack: Nav2 path planning, a custom mission state machine, AprilTag precision landing.">
 <meta name="color-scheme" content="dark">
 <title>Drone Autonomy &amp; Sim Stack · Raghav Kannan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,8 +23,8 @@
     <div class="proj-meta">
       <div><span class="tb-label">Role</span><span class="tb-value">Project Manager · systems integrator</span></div>
       <div><span class="tb-label">Team</span><span class="tb-value">Purdue ARC Drone Delivery</span></div>
-      <div><span class="tb-label">Status</span><span class="tb-value accent">Software Stack Integration Phase</span></div>
-      <div><span class="tb-label">Tools</span><span class="tb-value">ROS 2 · PX4 · Gazebo · BT.CPP · ROS2 Nav2</span></div>
+      <div><span class="tb-label">Status</span><span class="tb-value accent">SITL Flight-Tested</span></div>
+      <div><span class="tb-label">Tools</span><span class="tb-value">ROS 2 Jazzy · PX4 · Gazebo · Nav2 · uXRCE-DDS</span></div>
     </div>
   </header>
 
@@ -39,24 +39,26 @@
 
     <h2>Architecture</h2>
     <ul>
-      <li><strong>Hardware:</strong> Tarot T960 hexacopter, Jetson Orin Nano companion computer + Pixhawk 6C, LiDAR, LTE connectivity for campus-wide operation</li>
-      <li><strong>Localization:</strong> FAST-LIO2 LiDAR-inertial odometry</li>
-      <li><strong>Mission logic:</strong> BehaviorTree.CPP orchestrator (TAKEOFF → SEARCH → APPROACH → DESCEND → LANDED)</li>
-      <li><strong>Navigation:</strong> Nav2 &nbsp;·&nbsp; <strong>Landing:</strong> AprilTag precision landing</li>
+      <li><strong>Hardware:</strong> Tarot T960 hexacopter, Jetson Orin Nano companion computer + Pixhawk 6C, Livox Mid-360 LiDAR, LTE connectivity for campus-wide operation</li>
+      <li><strong>Localization:</strong> PX4's own state estimator, cross-checked against a persistent obstacle map built from LiDAR returns</li>
+      <li><strong>Mission logic:</strong> a state machine I wrote in C++ (TAKEOFF → TRANSIT → DELIVER → RETURN → SEARCH → LAND); Nav2 supplies path plans only and never commands the aircraft directly</li>
+      <li><strong>Navigation:</strong> Nav2 for path planning &nbsp;·&nbsp; <strong>Landing:</strong> AprilTag precision landing</li>
       <li><strong>Middleware:</strong> uXRCE-DDS bridge (replaced deprecated MAVROS)</li>
     </ul>
 
     <h2>My contributions</h2>
     <ul>
       <li>Finalized the hexacopter hardware architecture and connectivity design</li>
-      <li>Consolidated the simulation repo into the team monorepo, resolving nested git/submodule issues</li>
-      <li>Set up PX4 SITL pipelines; currently migrating Gazebo Classic → Gazebo Harmonic</li>
-      <li>Debugged PX4 preflight/arming gates (GCS heartbeat requirement) and DDS topic versioning issues; fixed rotor pose bugs in the simulation vehicle model</li>
+      <li>Replaced MAVROS with a direct PX4↔ROS 2 bridge and debugged the topic-versioning issues that came with it; a mismatched message definition drops data silently while the topic still shows up in every listing, which took a while to run down</li>
+      <li>Read the full flight stack, about 13,800 lines, line by line and fixed 12 defects before trusting it with the aircraft</li>
+      <li>Diagnosed a mid-flight loss of control from the flight controller's own raw log rather than the higher-level system logs, traced it to a commanded-heading rate problem, and fixed it with rate limiting</li>
+      <li>Vendored and brought up the driver for the real obstacle-avoidance LiDAR (Livox Mid-360), including its mount transform and network configuration</li>
       <li>Verified companion-computer integration: Jetson ↔ Pixhawk over UART with PX4 topics streaming via uXRCE-DDS</li>
       <li>Structured the team into navigation, landing, and electronics/mechanical subteams; training the incoming software lead</li>
     </ul>
 
     <h2>Results</h2>
+    <p>This stack has flown a full delivery mission end to end in simulation, no failsafe triggered. See <a href="drone-delivery.html">Drone Delivery</a> for the mission profile.</p>
 
     <figure class="figure-slot figure-photo">
       <img src="../photos_docs/navigation.png" alt="Nav2 navigation stack running in simulation">
@@ -64,13 +66,13 @@
     </figure>
 
     <figure class="figure-slot figure-photo">
-      <img src="../photos_docs/LIO.png" alt="FAST-LIO2 LiDAR-inertial odometry output">
-      <figcaption>FAST-LIO2 LiDAR-inertial odometry, showing clean returns on obstacles and terrain.</figcaption>
+      <img src="../photos_docs/LIO.png" alt="Early LiDAR-inertial odometry test">
+      <figcaption>An early LiDAR-inertial localization test. The current stack leans on PX4's own estimator instead.</figcaption>
     </figure>
 
     <figure class="figure-slot figure-photo">
       <img src="../photos_docs/landing.png" alt="AprilTag precision landing sequence in simulation">
-      <figcaption>AprilTag precision landing sequence validated in simulation.</figcaption>
+      <figcaption>AprilTag precision landing sequence.</figcaption>
     </figure>
 
     <h2>What I'd change</h2>
